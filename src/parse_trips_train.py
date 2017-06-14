@@ -41,13 +41,14 @@ trips['end_time'] = trips.end_date.dt.time
 trips['end_hour'] = trips.end_date.dt.hour
 trips['end_date'] = trips.end_date.dt.date
 
-# filtraremos registros con duraciones menores a 5 minutos (300 segundos)y m�s 24hrs (86400 segundos)
-trips = trips[(trips.duration >=300) & (trips.duration <= 86400)]
 trips['date'] = trips.start_date
 trips['trip_id'] = trips.id
 
-trips = trips[['trip_id','duration','date', 'season',
-               'start_station_name','start_station_id','start_time','start_hour', 'day_of_week',
-               'end_time','end_hour','end_station_name','end_station_id', 'subscription_type']]
+trips = trips[['trip_id','duration','date', 'season','start_station_id','start_time','start_hour',
+               'day_of_week', 'end_time','end_hour', 'subscription_type']]
 
 trips.to_csv('data/parsed_trips_train.csv', index=False)
+
+# filtraremos registros con duraciones menores a 5 minutos (300 segundos)y m�s 24hrs (86400 segundos)
+trips = trips[(trips.duration >=300) & (trips.duration <= 86400)]
+trips.to_csv('data/parsed_trips_train_filtered.csv', index=False)

@@ -19,6 +19,6 @@ station = pd.read_csv('data/station.csv', low_memory=False)
 
 station['coordinates'] = list(zip(station.lat, station.long))
 station['station_id'] = station.id
-station = station[['station_id', 'name', 'dock_count', 'city', 'coordinates']]
+station = station[['station_id', 'city']]
 
 station.to_csv('data/parsed_station.csv', index=False)

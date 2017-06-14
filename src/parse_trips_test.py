@@ -44,8 +44,7 @@ trips['end_date'] = trips.end_date.dt.date
 trips['date'] = trips.start_date
 trips['trip_id'] = trips.id
 
-trips = trips[['trip_id','date', 'season',
-               'start_station_name','start_station_id','start_time','start_hour', 'day_of_week',
-               'end_time','end_hour','end_station_name','end_station_id', 'subscription_type']]
+trips = trips[['trip_id','date', 'season','start_station_id','start_time','start_hour',
+               'day_of_week', 'end_time','end_hour', 'subscription_type']]
 
 trips.to_csv('data/parsed_trips_test.csv', index=False)
