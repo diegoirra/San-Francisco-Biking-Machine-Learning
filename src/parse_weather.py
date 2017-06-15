@@ -31,4 +31,8 @@ weather['city'] = weather['city'].replace(94063, 'Redwood City')
 weather['events'] = weather['events'].replace('rain', 'Rain')
 weather['events'] = weather['events'].replace(np.nan, 'Clear')
 
+weather = weather[['date','mean_temperature_f','mean_dew_point_f', 'mean_humidity','mean_sea_level_pressure_inches',
+                   'mean_visibility_miles','mean_wind_speed_mph','max_gust_speed_mph','precipitation_inches','events',
+                   'wind_dir_degrees','city']]
+
 weather.to_csv('data/parsed_weather.csv', index=False)
