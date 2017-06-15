@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/merge_datasets.py=utf-8
+encoding//src/my_preprocessing.py=utf-8
 encoding//src/parse_station.py=utf-8
 encoding//src/parse_trips_test.py=utf-8
 encoding//src/parse_trips_train.py=utf-8
