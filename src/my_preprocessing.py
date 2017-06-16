@@ -18,12 +18,12 @@ def pct_rank_qcut(series, n):
     return series.rank(pct=1).apply(f)
 
 def discretizar(df):
-    group_names = ['1', '2', '3', '4', '5']
+    group_names = ['one', 'two', 'three', 'four', 'five']
     
     df['mean_temperature_f'].fillna(df['mean_temperature_f'].dropna().median(), inplace=True)
     df['mean_temperature_f'] = pd.cut(df['mean_temperature_f'], 5, labels=group_names)
     
-    group_names = ['1', '2', '3', '4']
+    group_names = ['one', 'two', 'three', 'four']
     
     df['mean_dew_point_f'].fillna(df['mean_dew_point_f'].dropna().median(), inplace=True)
     df['mean_dew_point_f'] = pd.cut(df['mean_dew_point_f'], 4, labels=group_names)
@@ -37,7 +37,7 @@ def discretizar(df):
     df['mean_wind_speed_mph'].fillna(df['mean_wind_speed_mph'].dropna().median(), inplace=True)
     df['mean_wind_speed_mph'] = pd.cut(df['mean_wind_speed_mph'], 4, labels=group_names)
 
-    group_names = ['1', '2', '3', '4', '5', '6']
+    group_names = ['one', 'two', 'three', 'four', 'five', 'six']
     
     df['max_gust_speed_mph'].fillna(df['max_gust_speed_mph'].dropna().median(), inplace=True)
     df['max_gust_speed_mph'] = pd.cut(df['max_gust_speed_mph'], 6, labels=group_names)
@@ -51,8 +51,8 @@ def discretizar(df):
     
 '''FALTAN LOS FEATURES'''
 def encode_features(df_train, df_test):
-    df_combined = pd.concat([df_train[features], df_test[features]])
-    for dataset in df_combine:
+    combine = [train, test]
+    for dataset in combine:
         dataset['season'] = dataset['season'].map( {'summer': 0, 'autumn': 1, 'winter':2, 'spring':3} ).astype(int)
 
     for dataset in combine:
@@ -62,18 +62,18 @@ def encode_features(df_train, df_test):
         dataset['events'] = dataset['events'].map( {'Clear': 0, 'Fog': 1, 'Fog-Rain': 2, 'Rain': 3, 'Raind-Thunderstorm': 4} ).astype(int)
 
     for dataset in combine:
-        dataset['mean_temperature_f'] = dataset['mean_temperature_f'].map( {'1': 0, '2': 1, '3': 2, '4': 3, '5': 4} ).astype(int)
+        dataset['mean_temperature_f'] = dataset['mean_temperature_f'].map( {'one': 0, 'two': 1, 'three': 2, 'four': 3, 'five': 4} ).astype(int)
 
     features_with_4 = ['mean_dew_point_f',  'mean_humidity', 'mean_sea_level_pressure_inches', 'mean_visibility_miles', 'mean_wind_speed_mph']
     features_with_6 = ['max_gust_speed_mph','wind_dir_degrees']
     
     for feature in features_with_4:
         for dataset in combine:
-            dataset[feature] = dataset[feature].map( {'1': 0, '2': 1, '3': 2, '4': 3} ).astype(int)
+            dataset[feature] = dataset[feature].map( {'one': 0, 'two': 1, 'three': 2, 'four': 3} ).astype(int)
 
     for feature in features_with_6:
         for dataset in combine:
-            dataset[feature] = dataset[feature].map( {'1': 0, '2': 1, '3': 2, '4': 3, '5': 4, '6': 5} ).astype(int)
+            dataset[feature] = dataset[feature].map( {'one': 0, 'two': 1, 'three': 2, 'four': 3, 'five': 4, 'six': 5} ).astype(int)
 
     le = preprocessing.LabelEncoder()
     le = le.fit(df_combined['precipitation_inches'])
