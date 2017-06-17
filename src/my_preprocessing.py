@@ -84,7 +84,7 @@ train_encoded_filtered = encode_features(train_filtered)
 test_encoded = encode_features(test)
 
 train_encoded.to_csv('data/trips_train_final.csv', index=False)
-train_encoded_filtered.to_csv('data/trips_train_final_filtered', index=False)
+train_encoded_filtered.to_csv('data/trips_train_final_filtered.csv', index=False)
 test_encoded.to_csv('data/trips_test_final.csv', index=False)
 
 
