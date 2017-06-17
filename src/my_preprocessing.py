@@ -44,13 +44,13 @@ def discretizar(df):
 
     df['wind_dir_degrees'].fillna(df['wind_dir_degrees'].dropna().median(), inplace=True)
     df['wind_dir_degrees'] = pd.cut(df['wind_dir_degrees'], 6, labels=group_names)
-    '''CHEAQUEAR ESTO'''
+    
     df['mean_visibility_miles'].fillna(df['mean_visibility_miles'].dropna().median(), inplace=True)
     df['mean_visibility_miles'] = df['mean_visibility_miles'].astype(float) 
     df['mean_visibility_miles'] = pct_rank_qcut(df.mean_visibility_miles, 5)
     return df
     
-'''FALTAN LOS FEATURES'''
+
 def encode_features(dataset):
 
     dataset['season'] = dataset['season'].map( {'summer': 0, 'autumn': 1, 'winter':2, 'spring':3} ).astype(int)
@@ -58,15 +58,13 @@ def encode_features(dataset):
     dataset['events'] = dataset['events'].map( {'Clear': 0, 'Fog': 1, 'Fog-Rain': 2, 'Rain': 3, 'Rain-Thunderstorm': 4} ).astype(int)
     dataset['mean_temperature_f'] = dataset['mean_temperature_f'].map( {'one': 0, 'two': 1, 'three': 2, 'four': 3, 'five': 4} ).astype(int)
 
-    features_with_4 = ['mean_dew_point_f',  'mean_humidity', 'mean_sea_level_pressure_inches', 'mean_visibility_miles', 'mean_wind_speed_mph']
+    features_with_4 = ['mean_dew_point_f',  'mean_humidity', 'mean_sea_level_pressure_inches', 'mean_wind_speed_mph']
     features_with_6 = ['max_gust_speed_mph','wind_dir_degrees']
     
-    for feature in features_with_4:
-        print feature
+    for feature in features_with_4:        
         dataset[feature] = dataset[feature].map( {'one': 0, 'two': 1, 'three': 2, 'four': 3} ).astype(int)
 
-    for feature in features_with_6:
-        print feature
+    for feature in features_with_6:        
         dataset[feature] = dataset[feature].map( {'one': 0, 'two': 1, 'three': 2, 'four': 3, 'five': 4, 'six': 5} ).astype(int)
 
     le = preprocessing.LabelEncoder()
@@ -76,25 +74,18 @@ def encode_features(dataset):
 
 
 train, train_filtered, test = initialize_df()
-print set(train.mean_temperature_f.values)
-print set(train.mean_visibility_miles.values)
 
 train = discretizar(train)
-#train_filtered = discretizar(train_filtered)
-#test = discretizar(test)
-train.head(4)
-print set(train.mean_temperature_f.values)
-print set(train.mean_visibility_miles.values)
+train_filtered = discretizar(train_filtered)
+test = discretizar(test)
 
 train_encoded = encode_features(train)
-#train_encoded_filtered = encode_features(train_filtered)
-#test = encode_features(test)
-print set(train.mean_temperature_f.values)
-print set(train.mean_visibility_miles.values)
+train_encoded_filtered = encode_features(train_filtered)
+test_encoded = encode_features(test)
 
-
-
-'''
 train_encoded.to_csv('data/trips_train_final.csv', index=False)
 train_encoded_filtered.to_csv('data/trips_train_final_filtered', index=False)
-test_encoded.to_csv('data/trips_test_final.csv', index=False)'''
+test_encoded.to_csv('data/trips_test_final.csv', index=False)
+
+
+
