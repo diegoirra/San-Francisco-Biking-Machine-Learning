@@ -1,7 +1,8 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.externals import joblib
-import os.path
+#import os.path
+import os
 
 def train_model(model, model_name, filtered=False):
     
@@ -26,12 +27,14 @@ def train_model(model, model_name, filtered=False):
         print "Fitting model..."
         model.fit(X_train, y_train)
         print "Model fit. Joblibbing model..."
-        joblib.dump(model, path_joblib)  
+        os.chdir('trained_models_joblibbed')
+        joblib.dump(model, model_name+'.pkl')
+        os.chdir('..')
     
     print
-    print 'Score:'
-    print (model.score( X_train , y_train)*100 +'%')
-    print (model.score( X_test , y_test  )*100 +'%')
+    print 'Score (%):'
+    print (model.score( X_train , y_train)*100)
+    print (model.score( X_test , y_test  )*100)
     return model, X_test, y_test
 
 def make_prediction(model, model_name):
@@ -44,8 +47,9 @@ def make_prediction(model, model_name):
     
     predictions = model.predict(X_test)
     
-    output = pd.DataFrame({ 'trip_id' : ids, 'duration': predictions })
-    path = 'predictions/'+ model_name + '.csv'
+    output = pd.DataFrame({ 'id' : ids, 'duration': predictions })
+    os.chdir('predictions')
     print "Generating output..."
-    output.to_csv(path,index=False)
+    output[['id','duration']].to_csv(model_name+'.csv',index=False)
+    os.chdir('..')
     
