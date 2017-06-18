@@ -6,7 +6,6 @@ import os
 
 def train_model(model, model_name, filtered=False):
     
-    print "EXECUTING: "+ model_name
     print "Reading dataset..."       
     if filtered:
         train = pd.read_csv('data/trips_train_final_filtered.csv', low_memory=False)
