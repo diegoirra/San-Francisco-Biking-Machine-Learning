@@ -1,6 +1,6 @@
 from sklearn.cross_validation import KFold
 from sklearn.metrics import accuracy_score
-
+import numpy as np
 
 def run_kfold(classifier, X_all, y_all):
     
@@ -15,5 +15,7 @@ def run_kfold(classifier, X_all, y_all):
         predictions = classifier.predict(X_test)
         accuracy = accuracy_score(y_test, predictions)
         outcomes.append(accuracy)
+        mean = np.mean(outcomes)
         print("Fold {0} accuracy: {1}".format(fold, accuracy))
+        print("Mean accuracy: {0}".format(mean))
     
