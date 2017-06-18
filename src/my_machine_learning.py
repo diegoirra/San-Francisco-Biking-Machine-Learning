@@ -26,7 +26,7 @@ def train_model(model, model_name, filtered=False):
         print "Joblibbed model loaded" 
     else:
         print "Fitting model..."
-        model.fit(X_train, y_train)
+        print model.fit(X_train, y_train)
         print "Model fit. Joblibbing model..."
         os.chdir('trained_models_joblibbed')
         joblib.dump(model, model_name+'.pkl')

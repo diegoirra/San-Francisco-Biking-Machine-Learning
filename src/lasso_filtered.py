@@ -1,12 +1,12 @@
-from sklearn.linear_model import Ridge
+from sklearn.linear_model import Lasso
 from my_machine_learning import train_model, make_prediction
 import os
 os.chdir('..')
 
-model = Ridge()
-model_name = 'ridge'
+model = Lasso()
+model_name = 'lasso_filtered'
 
-model, X_test, y_test = train_model(model, model_name)
+model, X_test, y_test = train_model(model, model_name, filtered=True)
 
 if raw_input('Training done. Make prediction? [y/n]: ') == 'y':
     make_prediction(model, model_name)

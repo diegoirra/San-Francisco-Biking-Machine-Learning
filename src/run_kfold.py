@@ -1,4 +1,10 @@
 from sklearn.cross_validation import KFold
+from sklearn.metrics import explained_variance_score
+#from sklearn.metrics import explained_variance_score
+#from sklearn.metrics import mean_absolute_error
+#from sklearn.metrics import mean_squared_error
+#from sklearn.metrics import median_absolute_error
+#from sklearn.metrics import r2_score
 import numpy as np
 
 def run_kfold(classifier, X_all, y_all):
@@ -14,7 +20,9 @@ def run_kfold(classifier, X_all, y_all):
         X_train, X_test = X_all.values[train_index], X_all.values[test_index]
         y_train, y_test = y_all.values[train_index], y_all.values[test_index]
         classifier.fit(X_train, y_train)        
-        accuracy = classifier.score(X_test, y_test)
+        predictions = classifier.predict(X_test)
+        accuracy = explained_variance_score(y_test, predictions)
+        #accuracy = classifier.score(X_test, y_test)
         outcomes.append(accuracy)
         mean = np.mean(outcomes)
         print("Fold {0} accuracy: {1}".format(fold, accuracy*100))

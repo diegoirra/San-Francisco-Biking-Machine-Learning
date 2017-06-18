@@ -8,7 +8,7 @@ model_name = 'ridge_filtered'
 
 model, X_test, y_test = train_model(model, model_name, filtered=True)
 
-if raw_input('Training done. Make prediction? [y/n]') == 'y':
+if raw_input('Training done. Make prediction? [y/n]: ') == 'y':
     make_prediction(model, model_name)
     print 'Output generated.'
 else:
