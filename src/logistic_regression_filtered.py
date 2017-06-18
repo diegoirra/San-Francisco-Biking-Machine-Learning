@@ -3,7 +3,7 @@ from my_machine_learning import train_model, make_prediction
 import os
 os.chdir('..')
 
-logreg = LogisticRegression()
+logreg = LogisticRegression(solver='sag')
 model_name = 'logistic_regression_filtered'
 
 logreg, X_test, y_test = train_model(logreg, model_name, filtered=True)
