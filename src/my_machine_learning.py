@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.externals import joblib
-#import os.path
+from run_kfold import run_kfold
 import os
 
 def train_model(model, model_name, filtered=False):
@@ -32,9 +32,10 @@ def train_model(model, model_name, filtered=False):
         os.chdir('..')
     
     print
-    print 'Score (%):'
+    print 'Train CheckScore (%):'
     print (model.score( X_train , y_train)*100)
     print (model.score( X_test , y_test  )*100)
+    run_kfold(model, X_all, y_all)
     return model, X_test, y_test
 
 def make_prediction(model, model_name):
