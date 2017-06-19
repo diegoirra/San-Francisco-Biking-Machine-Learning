@@ -1,6 +1,5 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import explained_variance_score
 from sklearn.externals import joblib
 from run_kfold import run_kfold
 import os
