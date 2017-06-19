@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import explained_variance_score
 from sklearn.externals import joblib
 from run_kfold import run_kfold
 import os
@@ -34,6 +35,8 @@ def train_model(model, model_name, filtered=False, reduction=0):
         os.chdir('..')
         
     print 'Train CheckScore (%):'
+    print model.score(X_train, y_train)*100
+    print model.score(X_test, y_test)*100
     run_kfold(model, X_all, y_all)
     return model, X_test, y_test
 
