@@ -1,0 +1,28 @@
+model,kfold_score,subido
+ridge_filtered,8.733793,1
+ridge, 3.2
+lasso, 3.2609
+lasso_filtered, 8.7392,1
+elastic_net, 1.6989
+elastic_net, 4.1955
+lars, 3.2514
+lars_filtered, 8.733768,1
+lasso_lars_filtered, 5.9824
+lasso_lars, 2.8627
+omp, 3.3105
+omp_filtered, 8.6628589
+bayesian_ridge, 3.2800
+bayesian_ridge_filtered,8.73445579781,1
+ard, 0
+ard_filtered,0
+sgd, -1.32066340149e+17
+sgd_filtered, -7.39006105763e+17
+perceptron, 
+perceptron_filtered, 
+passive agregsive_filtered, 4
+pasive aggresive,
+
+linear reg filtered comb1, 1
+linear reg filtered comb2, 8.7570192669
+
+
