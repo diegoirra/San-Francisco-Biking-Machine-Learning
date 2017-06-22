@@ -1,4 +1,5 @@
 import pandas as pd
+import copy
 from sklearn.model_selection import train_test_split
 from sklearn.externals import joblib
 from run_kfold import run_kfold
@@ -36,7 +37,7 @@ def train_model(model, model_name, filtered=False, reduction=0):
     print 'Train CheckScore (%):'
     print model.score(X_train, y_train)*100
     print model.score(X_test, y_test)*100
-    run_kfold(model, X_all, y_all)
+    run_kfold(copy.deepcopy(model), X_all, y_all)
     return model, X_test, y_test
 
 def make_prediction(model, model_name, reduction=0):
@@ -64,7 +65,7 @@ def reducir_df(df, reduction_num, test=0):
     combos_list =[['start_hour', 'day_of_week'], #comb1
                   ['start_hour', 'day_of_week', 'subscription_type'], #comb2
                   ['start_hour', 'day_of_week', 'subscription_type', 'season'], #comb3
-                  ['day_of_week', 'season'], #comb4
+                  ['start_hour', 'day_of_week', 'subscription_type','season', 'events'], #comb4
                   ['day_of_week', 'season', 'subscription_type'], #comb5
                   ['start_hour','day_of_week','subscription_type','season','start_station_id'], #comb6
                   ['start_hour','day_of_week','subscription_type','season',

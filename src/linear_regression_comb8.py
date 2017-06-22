@@ -4,12 +4,12 @@ import os
 os.chdir('..')
 
 model = LinearRegression()
-model_name = 'linear_regression_filtered_comb8'
+model_name = 'linear_regression_filtered_combo4.2'
 
-model, X_test, y_test = train_model(model, model_name, filtered=True, reduction=8)
+model, X_test, y_test = train_model(model, model_name, filtered=True, reduction=4)
 
 if raw_input('Training done. Make prediction? [y/n]') == 'y':
-    make_prediction(model, model_name, reduction=8)
+    make_prediction(model, model_name, reduction=4)
     print 'Output generated.'
 else:
     print 'No output generated'

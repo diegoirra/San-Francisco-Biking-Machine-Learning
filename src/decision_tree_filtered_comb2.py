@@ -4,7 +4,7 @@ import os
 os.chdir('..')
 
 model = DecisionTreeRegressor()
-model_name = 'decision_tree_filtered_comb2'
+model_name = 'decision_tree_filtered_combo2'
 
 model, X_test, y_test = train_model(model, model_name, filtered=True, reduction=2)
 

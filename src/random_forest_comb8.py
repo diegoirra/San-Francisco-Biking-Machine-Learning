@@ -3,7 +3,7 @@ from my_machine_learning import train_model, make_prediction
 import os
 os.chdir('..')
 
-model = RandomForestClassifier()
+model = RandomForestClassifier(n_estimators=2, n_jobs=-1)
 model_name = 'random_forest_filtered_comb8'
 
 model, X_test, y_test = train_model(model, model_name, filtered=True, reduction=8)
